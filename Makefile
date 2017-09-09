@@ -2,13 +2,13 @@ clean:
 	@find . -name '*.py?' -delete
 	@find . -name '.cache' -type d | xargs rm -rf
 	@find . -name '__pycache__' -type d | xargs rm -rf
-	@rm -rf .venv
+	@rm -rf envs/
 
-.venv/bin/activate: requirements.txt
-	@test -d .venv || virtualenv -p python3 .venv
-	.venv/bin/pip install --upgrade pip
-	.venv/bin/pip install --no-cache-dir -Ur requirements.txt || exit -1
-	touch .venv/bin/activate
+aws: aws-requirements.txt
+	@test -d envs/aws || virtualenv -p python3 envs/aws
+	envs/aws/bin/pip install --upgrade pip
+	envs/aws/bin/pip install --no-cache-dir -Ur aws-requirements.txt || exit -1
+	touch envs/aws/bin/activate
 
-env: .venv/bin/activate
+env: aws
 
