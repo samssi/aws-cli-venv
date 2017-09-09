@@ -10,5 +10,5 @@ aws: aws-requirements.txt
 	envs/aws/bin/pip install --no-cache-dir -Ur aws-requirements.txt || exit -1
 	touch envs/aws/bin/activate
 
-env: aws
+envs: aws
 
